@@ -1,0 +1,105 @@
+what i have to find is for LLM presence in server side being on client side 
+START
+  │
+  ├── Is there a visible chatbot on the webpage?
+  │       │
+  │       ├── YES
+  │       │     └── Perform Behavioral Fingerprinting
+  │       │           ├─ Context memory test
+  │       │           ├─ Multi-step reasoning test
+  │       │           ├─ Instruction override test
+  │       │           ├─ Creativity variance test
+  │       │           ├─ Hallucination probing
+  │       │           └─ Response stability check
+  │       │
+  │       └── NO
+  │             └── No Chatbot Branch
+  │                   ↓
+  │               Find AI-powered feature
+  │                   ├─ Text summarizer
+  │                   ├─ Rewrite / humanizer
+  │                   ├─ Grammar correction
+  │                   ├─ Code explanation
+  │                   ├─ Translation tool
+  │                   ├─ SEO/content generator
+  │                   └─ Document analysis tool
+  │                   ↓
+  │               Repeat same input multiple times
+  │                   ├─ Check determinism
+  │                   └─ Check probabilistic variation
+  │                   ↓
+  │               Rephrase input slightly
+  │                   ├─ Synonym replacement
+  │                   ├─ Sentence restructuring
+  │                   └─ Minor perturbation test
+  │                   ↓
+  │               Test creativity boundaries
+  │                   ├─ Ask for unique examples
+  │                   ├─ Ask for analogies
+  │                   └─ Ask for stylistic variations
+  │                   ↓
+  │               Test hallucination behavior
+  │                   ├─ Ask about fake entities
+  │                   ├─ Ask unverifiable facts
+  │                   └─ Ask edge-case technical questions
+  │                   ↓
+  │               Test reasoning depth
+  │                   ├─ Multi-step logic task
+  │                   ├─ Conditional reasoning
+  │                   └─ Counterfactual scenario
+  │                   ↓
+  │               Analyze writing style
+  │                   ├─ Tone consistency
+  │                   ├─ Structured formatting
+  │                   ├─ Safety disclaimers
+  │                   └─ Model-like phrasing patterns
+  │                   ↓
+  │               Score confidence level
+  │                   ├─ Low (Rule-based likely)
+  │                   ├─ Medium (Hybrid system possible)
+  │                   └─ High (LLM highly probable)
+  │
+  ├── Response Analysis
+  │       │
+  │       ├── Deterministic / Fixed output
+  │       │       └── Likely Rule-Based or Retrieval System
+  │       │
+  │       └── Probabilistic / Variable output
+  │               └── Likely LLM-Based System
+  │
+  ├── Network Inspection (Browser DevTools)
+  │       │
+  │       ├── Known LLM endpoint detected?
+  │       │       ├─ api.openai.com
+  │       │       ├─ anthropic.com
+  │       │       ├─ generativelanguage.googleapis.com
+  │       │       ├─ huggingface.co
+  │       │       └─ azure openai endpoints
+  │       │
+  │       └── Proxy backend (Custom server wrapper)
+  │
+  ├── Linguistic Fingerprinting
+  │       ├─ Safety refusal style
+  │       ├─ Tone & politeness pattern
+  │       ├─ Formatting structure
+  │       ├─ Hallucination style
+  │       └─ Chain-of-thought leakage patterns
+  │
+  └── Security Evaluation (Authorized Testing)
+          ├─ Prompt injection resistance
+          ├─ Jailbreak resistance
+          ├─ Data leakage test
+          └─ Tool/API abuse test
+
+
+
+
+
+things to be noted are 
+1.how can we check weather there is an visible chatbot or not
+2. check weather is there any better way than Behavioral Fingerprinting and proper advantages and disadvantage . picking up the best and check how to implement it 
+3. In response analysis how can i check weather the given answer is deterministic or probabilistic 
+4. what are the limitation with network inspection 
+5. proper linguistic fingerprinting 
+6. check for software and what can we thing of that 
+7. Proper system evaluation (what can we do so that we can perform)
