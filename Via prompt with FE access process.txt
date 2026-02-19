@@ -103,3 +103,8 @@ things to be noted are
 5. proper linguistic fingerprinting 
 6. check for software and what can we thing of that 
 7. Proper system evaluation (what can we do so that we can perform)
+
+
+
+
+https://learnprompting.org/docs/prompt_hacking/introduction
