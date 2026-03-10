@@ -1,0 +1,7 @@
+Perfios Software Solutions – Company Overview
+
+Perfios Software Solutions is an Indian fintech company that provides advanced financial data analysis and automation platforms for banks, NBFCs, and other financial institutions. Founded in 2008 and headquartered in Bengaluru, India, Perfios helps organizations quickly process and analyze financial documents such as bank statements, income records, and credit data.
+
+The company’s technology uses data analytics and automation to support processes like loan underwriting, credit risk assessment, fraud detection, and financial data aggregation. By automating these tasks, Perfios enables financial institutions to make faster and more accurate lending decisions.
+
+Perfios serves hundreds of financial institutions globally across multiple regions, including Asia, the Middle East, and Europe, making it a key technology provider in the digital lending and financial data intelligence ecosystem.
