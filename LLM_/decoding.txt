@@ -1,0 +1,74 @@
+Decoding / Sampling Module
+│
+├── 1. Input Probability Distribution
+│     ├── From Softmax layer
+│     └── Shape: (batch_size × vocab_size)
+│
+├── 2. Logit Post-Processing
+│     │
+│     ├── Temperature Scaling
+│     │      └── logits / temperature
+│     │
+│     ├── Logit Bias Adjustment
+│     │      └── token-specific bias
+│     │
+│     ├── Repetition Penalty
+│     │      └── penalize previously generated tokens
+│     │
+│     ├── Frequency Penalty
+│     │      └── reduce probability of frequent tokens
+│     │
+│     └── Presence Penalty
+│            └── penalize tokens already used
+│
+├── 3. Token Filtering
+│     │
+│     ├── Top-K Filtering
+│     │      └── keep k highest probability tokens
+│     │
+│     ├── Top-P (Nucleus) Filtering
+│     │      └── keep smallest set with cumulative probability ≥ p
+│     │
+│     ├── Minimum Probability Threshold
+│     │      └── remove extremely low probability tokens
+│     │
+│     └── Bad Token Filtering
+│            └── block banned tokens
+│
+├── 4. Renormalization
+│     └── probabilities re-normalized after filtering
+│
+├── 5. Sampling Strategy
+│     │
+│     ├── Greedy Selection
+│     │      └── argmax(probabilities)
+│     │
+│     ├── Random Sampling
+│     │      └── sample from probability distribution
+│     │
+│     ├── Top-K Sampling
+│     │
+│     ├── Top-P Sampling
+│     │
+│     └── Beam Search (optional)
+│            ├── beam expansion
+│            ├── beam scoring
+│            └── beam pruning
+│
+├── 6. Token Selection
+│     └── chosen token ID
+│
+├── 7. Sequence Update
+│     ├── append token to sequence
+│     └── update context window
+│
+├── 8. Stopping Criteria
+│     │
+│     ├── End-of-sequence token (<eos>)
+│     ├── Maximum token limit
+│     ├── Stop sequences
+│     └── Generation timeout
+│
+└── 9. Output Token Stream
+      ├── generated tokens
+      └── decoded text

@@ -1,0 +1,49 @@
+Embedding Layer
+│
+├── 1. Token Embedding
+│     │
+│     ├── Vocabulary Embedding Matrix
+│     │      ├── Matrix size: (vocab_size × hidden_dim)
+│     │      └── Trainable parameters
+│     │
+│     ├── Token Vector Lookup
+│     │      ├── Token ID indexing
+│     │      └── Row selection
+│     │
+│     └── Token Embedding Output
+│
+├── 2. Positional Information
+│     │
+│     ├── Positional Encoding Type
+│     │      ├── Learned positional embeddings
+│     │      ├── Sinusoidal positional encoding
+│     │      └── Rotary positional embedding (RoPE)
+│     │
+│     ├── Position Embedding Matrix
+│     │      └── (max_seq_length × hidden_dim)
+│     │
+│     └── Position Vector Lookup
+│
+├── 3. Segment / Token-Type Embeddings (optional)
+│     ├── Segment embedding matrix
+│     ├── Token type lookup
+│     └── Segment vector addition
+│
+├── 4. Embedding Combination
+│     ├── Token embedding
+│     ├── Positional embedding
+│     ├── Segment embedding
+│     └── Vector addition
+│
+├── 5. Embedding Scaling
+│     └── Multiply by √hidden_dim
+│
+├── 6. Embedding Normalization (optional)
+│     ├── Layer Normalization
+│     └── Parameter scaling
+│
+├── 7. Embedding Dropout
+│     └── Regularization
+│
+└── 8. Output Hidden State
+      └── Passed to Transformer Decoder

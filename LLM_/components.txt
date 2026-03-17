@@ -1,0 +1,98 @@
+LLM Inference Pipeline
+├── 1. Tokenizer
+│   ├── Text normalization
+│   │   ├── Lowercasing
+│   │   ├── Punctuation removal/standardization
+│   │   ├── Whitespace trimming
+│   │   └── Unicode normalization
+│   │       ├── Character decomposition
+│   │       └── Codepoint mapping
+│   └── Subword segmentation (BPE/WordPiece)
+│       ├── Pair frequency counting
+│       ├── Pair merging
+│       └── Token boundary updates
+│   └── Vocabulary lookup
+│       ├── Hash table or trie search
+│       │   ├── String comparison
+│       │   └── Index retrieval
+│       ├── Token-ID mapping
+│       ├── Array indexing
+│       └── Integer assignment
+│   └── Bottom-most operations
+│       └── comparison, addition, indexing, assignment
+│
+├── 2. Embedding Layer
+│   ├── Token embedding
+│   │   ├── Token embedding matrix [Vocab_size × Hidden_dim]
+│   │   ├── Array indexing → vector
+│   │   └── Copying numbers
+│   └── Positional embedding
+│       ├── Position embedding matrix [Max_length × Hidden_dim]
+│       ├── Array lookup
+│       └── Vector addition (element-wise FP addition)
+│   └── Bottom-most operations
+│       └── memory fetch, addition, FP arithmetic
+│
+├── 3. Transformer Decoder Stack (N layers)
+│   ├── Decoder Layer
+│   │   ├── A. Masked Multi-Head Self-Attention
+│   │   │   ├── Linear Projections (Q, K, V)
+│   │   │   │   ├── Weight matrix [Hidden_dim × Hidden_dim]
+│   │   │   │   ├── Bias vector [Hidden_dim]
+│   │   │   │   └── Matrix multiplication
+│   │   │   ├── Attention Score Computation
+│   │   │   │   ├── Q · Kᵀ [Seq_len × Seq_len] (dot products)
+│   │   │   │   ├── Scale by 1/√d_k
+│   │   │   │   ├── Masking (compare positions → assign -∞)
+│   │   │   │   └── Softmax (exp → sum → divide)
+│   │   │   ├── Weighted Value Aggregation
+│   │   │   │   └── Attention weights × V (matrix mult)
+│   │   │   ├── Multi-Head Concatenation
+│   │   │   └── Output Linear Projection (matrix mult + bias)
+│   │   │   └── Bottom-most: dot products, mult, add, div, exp, memory access
+│   │   ├── B. Residual Connection
+│   │   │   └── Element-wise addition
+│   │   ├── C. Layer Normalization
+│   │   │   ├── Compute mean (sum / count)
+│   │   │   ├── Compute variance (sum((x-mean)²) / count)
+│   │   │   ├── Normalize: (x-mean)/√(variance+ε)
+│   │   │   └── Scale/shift (×γ + β)
+│   │   │   └── Bottom-most: sub, add, mult, div, sqrt, exp
+│   │   ├── D. Feed-Forward Network (FFN)
+│   │   │   ├── Linear Layer 1
+│   │   │   │   ├── Weight matrix + bias → matrix mult
+│   │   │   │   └── GELU activation
+│   │   │   │       ├── 0.5 × x × (1 + tanh(√(2/π) × (x + 0.044715×x³)))
+│   │   │   │       └── mult, add, exp, div, tanh
+│   │   │   └── Linear Layer 2 (matrix mult + bias)
+│   │   │   └── Bottom-most: dot product, add, mult, exp, tanh, div
+│   │   ├── E. Second Residual Connection
+│   │   │   └── Element-wise addition
+│   │   └── F. Second Layer Normalization
+│   │       └── (Same as C)
+│   ├── 4. Final Layer Normalization
+│   │   └── (Same as layer norm)
+│   └── 5. Output Projection Layer
+│       ├── Linear projection → logits
+│       ├── Weight matrix [Hidden_dim × Vocab_size]
+│       ├── Bias vector [Vocab_size]
+│       └── Matrix mult + element-wise add
+│
+├── 6. Probability Layer (Softmax)
+│   ├── Exponentiation
+│   ├── Sum of exponentials
+│   └── Division → normalize probabilities
+│   └── Bottom-most: exp, add, div
+│
+└── 7. Decoding / Sampling
+    ├── Greedy selection
+    │   ├── Compare probabilities
+    │   └── Choose maximum
+    ├── Top-k sampling
+    │   ├── Sort probabilities
+    │   └── Choose from top-k
+    └── Nucleus sampling
+        ├── Temperature scaling (logits × 1/T)
+        ├── Compute cumulative probability
+        └── Select where cumulative ≥ threshold
+    └── Bottom-most: add, mult, comparison, div, exp, FP arithmetic
