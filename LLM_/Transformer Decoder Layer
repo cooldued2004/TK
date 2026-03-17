@@ -1,0 +1,79 @@
+Transformer Decoder Layer
+│
+├── 1. Input Hidden State
+│     ├── Tensor shape: (batch_size × seq_len × hidden_dim)
+│     └── Residual buffer
+│
+├── 2. Pre-Normalization (Pre-LN architecture)
+│     ├── LayerNorm
+│     │      ├── Mean computation
+│     │      ├── Variance computation
+│     │      ├── Normalization
+│     │      ├── Scale parameter γ
+│     │      └── Bias parameter β
+│
+├── 3. Masked Multi-Head Self-Attention
+│     │
+│     ├── 3.1 Linear Projections
+│     │      ├── Query projection
+│     │      ├── Key projection
+│     │      └── Value projection
+│     │
+│     ├── 3.2 Head Splitting
+│     │      └── reshape → (batch × heads × seq_len × head_dim)
+│     │
+│     ├── 3.3 Rotary / Positional Encoding Injection (optional)
+│     │      └── applied to Q and K
+│     │
+│     ├── 3.4 Attention Score Calculation
+│     │      └── Q × Kᵀ
+│     │
+│     ├── 3.5 Scaling
+│     │      └── divide by √head_dim
+│     │
+│     ├── 3.6 Attention Masking
+│     │      ├── causal mask
+│     │      └── padding mask
+│     │
+│     ├── 3.7 Softmax
+│     │
+│     ├── 3.8 Attention Dropout
+│     │
+│     ├── 3.9 Weighted Value Aggregation
+│     │      └── attention_weights × V
+│     │
+│     ├── 3.10 Head Concatenation
+│     │
+│     └── 3.11 Output Linear Projection
+│
+├── 4. Residual Connection
+│     └── Add original hidden state
+│
+├── 5. Dropout
+│
+├── 6. Layer Normalization (depending on architecture)
+│
+├── 7. Feed-Forward Network (FFN)
+│     │
+│     ├── 7.1 Pre-Normalization
+│     │      └── LayerNorm
+│     │
+│     ├── 7.2 Linear Layer 1 (Expansion)
+│     │      └── hidden_dim → intermediate_dim
+│     │
+│     ├── 7.3 Activation Function
+│     │      ├── GELU
+│     │      ├── ReLU
+│     │      └── SwiGLU (modern LLMs)
+│     │
+│     ├── 7.4 Gating Mechanism (optional)
+│     │      └── gated linear units
+│     │
+│     ├── 7.5 Linear Layer 2 (Projection)
+│     │      └── intermediate_dim → hidden_dim
+│     │
+│     └── 7.6 Dropout
+│
+├── 8. Residual Connection
+│
+└── 9. Output Hidden State

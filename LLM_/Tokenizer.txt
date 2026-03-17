@@ -1,0 +1,58 @@
+Tokenizer
+│
+├── 1. Input Processing
+│     ├── Text Input Buffer
+│     └── Encoding Detection (UTF-8 / Unicode)
+│
+├── 2. Text Normalization
+│     ├── Unicode normalization (NFC / NFKC)
+│     ├── Lowercasing (optional)
+│     ├── Accent stripping
+│     ├── Whitespace normalization
+│     └── Control character removal
+│
+├── 3. Pre-Tokenization
+│     ├── Whitespace splitting
+│     ├── Punctuation splitting
+│     ├── Digit splitting
+│     ├── Language-specific rules
+│     └── Byte-level processing
+│
+├── 4. Subword Segmentation
+│     ├── Algorithm selection
+│     │      ├── Byte Pair Encoding (BPE)
+│     │      ├── WordPiece
+│     │      └── Unigram LM
+│     │
+│     ├── Merge Rules / Token Merge Table
+│     ├── Subword candidate search
+│     └── Longest-match selection
+│
+├── 5. Vocabulary Lookup
+│     ├── Token dictionary
+│     ├── Subword token lookup
+│     ├── Unknown token handling (<unk>)
+│     └── Special token recognition
+│
+├── 6. Special Token Processing
+│     ├── BOS token (<bos>)
+│     ├── EOS token (<eos>)
+│     ├── Padding token (<pad>)
+│     ├── Unknown token (<unk>)
+│     └── Control tokens (<system>, <assistant>, etc.)
+│
+├── 7. Token ID Mapping
+│     ├── Token → ID mapping
+│     ├── ID generation
+│     └── Sequence construction
+│
+├── 8. Post-Processing
+│     ├── Sequence truncation
+│     ├── Padding
+│     ├── Attention mask generation
+│     └── Token type IDs (optional)
+│
+└── 9. Output
+      ├── Token ID sequence
+      ├── Attention mask
+      └── Token metadata
