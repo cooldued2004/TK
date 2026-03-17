@@ -1,0 +1,4 @@
+What are the requirements for the Research
+    1.Capabilities for each layer of the architecture
+    2.Sniffing Techniques for each layer/ capabilities.
+    3.Pocs for the sniffing techniques.

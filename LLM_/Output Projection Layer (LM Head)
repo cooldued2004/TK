@@ -1,0 +1,37 @@
+Output Projection Layer (LM Head)
+│
+├── 1. Input Hidden State
+│     ├── Tensor from Final LayerNorm
+│     └── Shape: (batch_size × seq_len × hidden_dim)
+│
+├── 2. Optional Hidden State Processing
+│     ├── Dropout (optional)
+│     └── Hidden state reshaping
+│
+├── 3. Linear Projection
+│     │
+│     ├── Weight Matrix
+│     │      ├── Shape: (hidden_dim × vocab_size)
+│     │      └── Trainable parameters
+│     │
+│     ├── Bias Vector
+│     │      ├── Shape: (vocab_size)
+│     │      └── Optional in some models
+│     │
+│     └── Matrix Multiplication
+│            └── hidden_state × W + b
+│
+├── 4. Weight Tying (optional but common)
+│     ├── Share weights with token embedding matrix
+│     └── Reduces parameter count
+│
+├── 5. Vocabulary Logits
+│     ├── Output tensor
+│     └── Shape: (batch_size × seq_len × vocab_size)
+│
+├── 6. Logit Scaling / Temperature Adjustment (optional)
+│     └── logits / temperature
+│
+└── 7. Output Interface
+      ├── Passed to Softmax layer
+      └── Used for next-token prediction

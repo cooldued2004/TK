@@ -1,0 +1,42 @@
+Probability Layer
+│
+├── 1. Input Logits
+│     ├── Output from LM Head
+│     └── Shape: (batch_size × seq_len × vocab_size)
+│
+├── 2. Logit Processing (optional)
+│     │
+│     ├── Temperature Scaling
+│     │      └── logits / temperature
+│     │
+│     ├── Logit Bias Adjustment
+│     │      └── add bias to specific tokens
+│     │
+│     └── Logit Clipping (optional)
+│
+├── 3. Numerical Stabilization
+│     │
+│     ├── Maximum Logit Extraction
+│     │      └── max(logits)
+│     │
+│     └── Logit Shift
+│            └── logits − max(logits)
+│
+├── 4. Exponentiation
+│     └── exp(logits)
+│
+├── 5. Normalization Constant
+│     └── Sum of exponentials
+│
+├── 6. Softmax Probability Computation
+│     └── exp(logit_i) / Σ exp(logits)
+│
+├── 7. Probability Tensor
+│     ├── Shape: (batch_size × seq_len × vocab_size)
+│     └── Values between 0 and 1
+│
+├── 8. Optional Log Probability Conversion
+│     └── log_softmax
+│
+└── 9. Output Distribution
+      └── Passed to decoding / sampling module
