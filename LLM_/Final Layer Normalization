@@ -1,0 +1,33 @@
+Final Layer Normalization
+│
+├── 1. Input Hidden State
+│     ├── Tensor shape: (batch_size × seq_len × hidden_dim)
+│     └── Output from final transformer decoder layer
+│
+├── 2. Mean Computation
+│     ├── Compute mean across hidden dimension
+│     └── μ = (1 / hidden_dim) Σ x_i
+│
+├── 3. Variance Computation
+│     ├── Compute variance across hidden dimension
+│     └── σ² = (1 / hidden_dim) Σ (x_i − μ)²
+│
+├── 4. Numerical Stability Adjustment
+│     └── Add epsilon (ε) to variance
+│
+├── 5. Standard Deviation
+│     └── sqrt(σ² + ε)
+│
+├── 6. Normalization
+│     └── (x − μ) / sqrt(σ² + ε)
+│
+├── 7. Scale Transformation
+│     ├── Multiply by learnable parameter γ
+│     └── γ shape: (hidden_dim)
+│
+├── 8. Bias Transformation
+│     ├── Add learnable parameter β
+│     └── β shape: (hidden_dim)
+│
+├── 9. Output Hidden State
+│     └── Passed to Output Projection Layer (LM Head)
